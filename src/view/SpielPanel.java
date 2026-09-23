@@ -100,6 +100,11 @@ public class SpielPanel extends JPanel {
 
     }
 
+    public void setLabelFarbe(Color farbe) {
+        ergebnis.setBackground(farbe);
+        punkte.setBackground(farbe);
+    }
+
     /**
      * Setzt alle Anzeigen zurück
      */
@@ -107,6 +112,7 @@ public class SpielPanel extends JPanel {
         spielerInput.setText("");
         computerAnzeige.setText("");
         ergebnis.setText("Tippe eine Zahl von 1 bis 9");
+        setLabelFarbe(Color.WHITE);
     }
     public void setAgainAktiviert() {
 
