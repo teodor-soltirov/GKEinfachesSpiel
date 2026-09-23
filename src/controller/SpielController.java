@@ -2,6 +2,7 @@ package controller;
 import model.GewinnModel;
 import view.SpielFrame;
 import view.SpielPanel;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -47,10 +48,21 @@ public class SpielController implements ActionListener {
             sp.setComputerZahl(gModel.getComputerZahl());
             sp.setRundenErgebnis(gModel.getRundenErgebnis());
             sp.setGesamtPunkte(gModel.getGesamtPunkte());
+
+            if (gModel.hatGewonnen()) {
+                sp.setLabelFarbe(Color.GREEN);
+            } else if (gModel.hatVerloren()) {
+                sp.setLabelFarbe(Color.RED);
+            } else if (gModel.getRundenErgebnis() > 0) {
+                sp.setLabelFarbe(Color.GREEN);
+            } else if (gModel.getRundenErgebnis() < 0) {
+                sp.setLabelFarbe(Color.RED);
+            } else {
+                sp.setLabelFarbe(Color.WHITE);
+            }
+
             sp.setEingabeAktiviert(false);
             sp.setNochEinmalAktiviert(true);
-            if(gModel.hatGewonnen()) sp.setStatus("Gewonnen");
-            else if(gModel.hatVerloren()) sp.setStatus("Verloren");
         }
         if(e.getActionCommand().equals("AGAIN")) {
             sp.resetRunde();
@@ -58,7 +70,9 @@ public class SpielController implements ActionListener {
             sp.setNochEinmalAktiviert(false);
         }
     }
+
     public static void main(String[] args) {
          new SpielController();
     }
+
 }
