@@ -47,17 +47,18 @@ public class SpielController implements ActionListener {
             sp.setComputerZahl(gModel.getComputerZahl());
             sp.setRundenErgebnis(gModel.getRundenErgebnis());
             sp.setGesamtPunkte(gModel.getGesamtPunkte());
-
+            sp.setEingabeAktiviert(false);
+            sp.setNochEinmalAktiviert(true);
             if(gModel.hatGewonnen()) sp.setStatus("Gewonnen");
             else if(gModel.hatVerloren()) sp.setStatus("Verloren");
         }
         if(e.getActionCommand().equals("AGAIN")) {
             sp.resetRunde();
+            sp.setEingabeAktiviert(true);
+            sp.setNochEinmalAktiviert(false);
         }
     }
-
     public static void main(String[] args) {
          new SpielController();
     }
-
 }

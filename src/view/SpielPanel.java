@@ -28,9 +28,12 @@ public class SpielPanel extends JPanel {
         JLabel gPunkte = new JLabel("Gesamtpunkte:", SwingConstants.CENTER);
         ergebnis = new JLabel("Tippe eine Zahl von 1 bis 9", SwingConstants.CENTER);
         ergebnis.setEnabled(true);
+        ergebnis.setOpaque(true);
         ergebnis.setBackground(Color.WHITE);
         punkte = new JLabel("30", SwingConstants.CENTER);
+        punkte.setOpaque(true);
         punkte.setEnabled(true);
+
         punkte.setBackground(Color.WHITE);
         JLabel spZahl = new JLabel("Deine Zahl:", SwingConstants.CENTER);
         JLabel cpZahl = new JLabel("Computer:", SwingConstants.CENTER);
@@ -54,7 +57,7 @@ public class SpielPanel extends JPanel {
         inputArea.add(computerAnzeige);
         add(inputArea, BorderLayout.CENTER);
         nochmal = new JButton("Noch einmal!");
-        nochmal.setEnabled(true);
+        nochmal.setEnabled(false);
         nochmal.addActionListener(sc);
         nochmal.setActionCommand("AGAIN");
         nochmal.setPreferredSize(new Dimension(125, 20));
@@ -93,11 +96,20 @@ public class SpielPanel extends JPanel {
         punkte.setText(String.valueOf(punkteZahl));
     }
 
+    /**
+     * Sperrt oder Aktiviert das Textfeld
+     * @param tf true wenn das Textfeld aktiviert wird, sonst false
+     */
     public void setEingabeAktiviert(boolean tf) {
-
+        spielerInput.setEnabled(tf);
     }
-    public void setNochEinmalAktiviert(boolean tf) {
 
+    /**
+     * Sperrt oder aktiviert den Button
+     * @param tf true wenn der Button aktiviert wird, sonst false
+     */
+    public void setNochEinmalAktiviert(boolean tf) {
+        nochmal.setEnabled(tf);
     }
 
     /**
