@@ -126,15 +126,6 @@ public class SpielPanel extends JPanel {
         ergebnis.setText("Tippe eine Zahl von 1 bis 9");
         setLabelFarbe(Color.WHITE);
     }
-    public void setAgainAktiviert() {
-
-    }
-    public void setInputAktiviert() {
-
-    }
-    public void setStatus(String anzeige) {
-
-    }
 
     /**
      * Setzt den Textfield unter "Rundenergebnis"

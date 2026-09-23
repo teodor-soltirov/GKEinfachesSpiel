@@ -49,11 +49,7 @@ public class SpielController implements ActionListener {
             sp.setRundenErgebnis(gModel.getRundenErgebnis());
             sp.setGesamtPunkte(gModel.getGesamtPunkte());
 
-            if (gModel.hatGewonnen()) {
-                sp.setLabelFarbe(Color.GREEN);
-            } else if (gModel.hatVerloren()) {
-                sp.setLabelFarbe(Color.RED);
-            } else if (gModel.getRundenErgebnis() > 0) {
+            if (gModel.getRundenErgebnis() > 0) {
                 sp.setLabelFarbe(Color.GREEN);
             } else if (gModel.getRundenErgebnis() < 0) {
                 sp.setLabelFarbe(Color.RED);

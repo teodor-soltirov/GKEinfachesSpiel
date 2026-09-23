@@ -13,7 +13,7 @@ public class SpielFrame extends JFrame {
      * @param p Das übergebene Panelobjekt
      */
     public SpielFrame(JPanel p) {
-        super("Zahlen-Gewinnspiel V1.0");
+        super("Zahlen-Gewinnspiel V2.0");
         this.add(p);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setBounds(800, 400, 400, 250);
