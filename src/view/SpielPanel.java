@@ -14,21 +14,26 @@ public class SpielPanel extends JPanel {
     private SpielController sc;
     private JTextField spielerInput, computerAnzeige;
 
+    /**
+     * Panel-Konstruktor zur Erstellung der GUI des Spiels
+     * Beinhaltet Labels und Buttons
+     * @param sc Das SpielController-Objekt
+     */
     public SpielPanel(SpielController sc) {
         this.sc = sc;
         this.setLayout(new BorderLayout());
         JPanel status = new JPanel();
         status.setLayout(new GridLayout(3,  2, 10, 0));
-        JLabel rErgebnis = new JLabel("Rundenergebnis:");
-        JLabel gPunkte = new JLabel("Gesamtpunkte:");
-        ergebnis = new JLabel("Tippe eine Zahl von 1 bis 9");
-        ergebnis.setEnabled(false);
+        JLabel rErgebnis = new JLabel("Rundenergebnis:", SwingConstants.CENTER);
+        JLabel gPunkte = new JLabel("Gesamtpunkte:", SwingConstants.CENTER);
+        ergebnis = new JLabel("Tippe eine Zahl von 1 bis 9", SwingConstants.CENTER);
+        ergebnis.setEnabled(true);
         ergebnis.setBackground(Color.WHITE);
-        punkte = new JLabel("30");
-        punkte.setEnabled(false);
+        punkte = new JLabel("30", SwingConstants.CENTER);
+        punkte.setEnabled(true);
         punkte.setBackground(Color.WHITE);
-        JLabel spZahl = new JLabel("Deine Zahl:");
-        JLabel cpZahl = new JLabel("Computer:");
+        JLabel spZahl = new JLabel("Deine Zahl:", SwingConstants.CENTER);
+        JLabel cpZahl = new JLabel("Computer:", SwingConstants.CENTER);
         cpZahl.setEnabled(true);
         status.add(rErgebnis);
         status.add(gPunkte);
@@ -52,24 +57,52 @@ public class SpielPanel extends JPanel {
         nochmal.setEnabled(true);
         nochmal.addActionListener(sc);
         nochmal.setActionCommand("AGAIN");
-        add(nochmal, BorderLayout.PAGE_END);
+        nochmal.setPreferredSize(new Dimension(125, 20));
+        JPanel buttonArea = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        buttonArea.add(nochmal);
+        add(buttonArea, BorderLayout.PAGE_END);
+        Font font = new Font("Arial", Font.BOLD, 20);
+        spielerInput.setFont(font);
+        computerAnzeige.setFont(font);
+        spielerInput.setHorizontalAlignment(JTextField.CENTER);
+        computerAnzeige.setHorizontalAlignment(JTextField.CENTER);
+
     }
 
+    /**
+     * Setzt den übergebenen Parameter als Text des Textfields unter "Computer"
+     * @param cpZahl - Die zufälllig erstellte Zahl für den Computer
+     */
     public void setComputerZahl(int cpZahl) {
         computerAnzeige.setText("" + cpZahl);
     }
+
+    /**
+     * Setzt den übergebenen Parameter als Text des Labels unter "Rundenergebnis"
+     * @param ergebnisZahl
+     */
     public void setRundenErgebnis(int ergebnisZahl) {
         ergebnis.setText(String.valueOf(ergebnisZahl));
     }
+
+    /**
+     * Setzt den übergebenen Parameter als Text des Textfields unter "Gesamtpunkte"
+     * @param punkteZahl
+     */
     public void setGesamtPunkte(int punkteZahl) {
         punkte.setText(String.valueOf(punkteZahl));
     }
+
     public void setEingabeAktiviert(boolean tf) {
 
     }
     public void setNochEinmalAktiviert(boolean tf) {
 
     }
+
+    /**
+     * Setzt alle Anzeigen zurück
+     */
     public void resetRunde() {
         spielerInput.setText("");
         computerAnzeige.setText("");
@@ -84,9 +117,19 @@ public class SpielPanel extends JPanel {
     public void setStatus(String anzeige) {
 
     }
+
+    /**
+     * Setzt den Textfield unter "Rundenergebnis"
+     * @param error Der Übergebene Fehler (String)
+     */
     public void showError(String error) {
         ergebnis.setText(error);
     }
+
+    /**
+     * Holt den Input des Benutzers
+     * @return Die eingegebene Zahl
+     */
     public int getInput() {
         return Integer.parseInt(spielerInput.getText());
     }

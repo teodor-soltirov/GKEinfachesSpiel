@@ -5,15 +5,26 @@ import view.SpielPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Enthält die main-Methode
+ */
 public class SpielController implements ActionListener {
     private GewinnModel gModel;
     private SpielPanel sp;
+
+    /**
+     * Deklariert und Initialisiert ein neues Model- Panel- und Frameobjekt.
+     */
     public SpielController() {
         this.gModel = new GewinnModel();
         this.sp = new SpielPanel(this);
         SpielFrame sf = new SpielFrame(sp);
     }
 
+    /**
+     * Behandlet die Inputs des Users (Enter, Klick des Buttons)
+     * @param e Das ausgelöste Event
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("ENTER")) {
