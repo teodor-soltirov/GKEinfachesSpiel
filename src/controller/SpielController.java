@@ -10,7 +10,7 @@ public class SpielController implements ActionListener {
     private SpielPanel sp;
     public SpielController() {
         this.gModel = new GewinnModel();
-        this.sp = new SpielPanel();
+        this.sp = new SpielPanel(this);
         SpielFrame sf = new SpielFrame(sp);
     }
 
@@ -20,7 +20,7 @@ public class SpielController implements ActionListener {
             int spielerZahl = 0;
 
             try {
-                spielerZahl = Integer.parseInt(sp.getInput).trim();
+                spielerZahl = sp.getInput();
             } catch (NumberFormatException exc) {
                 sp.showError("Bitte eine Zahl von 1-9 eingeben");
                 return;
@@ -36,16 +36,12 @@ public class SpielController implements ActionListener {
             sp.setComputerZahl(gModel.getComputerZahl());
             sp.setRundenErgebnis(gModel.getRundenErgebnis());
             sp.setGesamtPunkte(gModel.getGesamtPunkte());
-            sp.setEingabeAktiviert(false);
-            sp.setNochEinmalAktiviert(true);
 
-            if(model.hatGewonnen()) sp.setStatus("Gewonnen");
+            if(gModel.hatGewonnen()) sp.setStatus("Gewonnen");
             else if(gModel.hatVerloren()) sp.setStatus("Verloren");
         }
         if(e.getActionCommand().equals("AGAIN")) {
             sp.resetRunde();
-            sp.setAgainAktiviert(false);
-            sp.setInputAktiviert(true);
         }
     }
 
